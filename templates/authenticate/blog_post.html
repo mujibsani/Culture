@@ -1,0 +1,14 @@
+{% extends 'authenticate/base.html' %}
+
+{% block content%}
+    <h1 class="text-center">New Post</h1>
+
+        <form method="POST"  action="{% url 'blog_post' %}" enctype="multipart/form-data" >
+            <div class="fieldWrapper">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <input type="submit" value="create" class="btn btn-secondary">
+        </form>
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'tools/base_tools.html' %}
+{% load crispy_forms_filters %}
+{% block content %}
+    <div id="fh5co-single-content" class="container-fluid pb-4 pt-4 paddding">
+    <div class="container paddding">
+        <div class="row mx-0">
+            <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+                <form id="protik" method="post" >
+                    {% csrf_token %}
+                    {{ form.give_your_keyword|as_crispy_field }}
+                    <button type="submit" class="btn btn-success" >CLICK ME</button><br>
+                      <p></p>
+                      <label> Exist keyword show green and others is/are red</label>
+                      <p class="exist" style="color: green;">{{results}}</p><br>
+                      <p id="non_match" class="notexist" style="color: red;">{{non_match}}</p><br>
+                            <div id="sani"> {{ form.article|as_crispy_field }}</div>
+
+
+                  </form>
+            </div>
+
+
+
+
+
+{#            Content Score#}
+
+            <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
+                <div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Content score</div>
+                </div>
+                <div class="clearfix">
+                    <p id="score_1">You should add a H1</p>
+                    <p id="score_2">The focus keyword "Dhaka" doesn't appear in the H1</p>
+                    <p id="score_3">You should add text</p>
+                    <p id="score_4">Your text doesn't contain enough words, a minimum of 300 words is recommended</p>
+                    <p id="score_5">The focus keyword "Dhaka" doesn't appear in first paragraph of the text</p>
+                    <p id="score_6">You should use the focus keyword keyword "Dhaka" more often, to improve the keyword density</p>
+                    <p id="score_7">You should add an image</p>
+                    <p id="score_8">The focus keyword "Dhaka" doesn't appear in the image name</p>
+                    <p id="score_9">The focus keyword "Dhaka" doesn't appear in the image Alt tag</p>
+                    <p id="score_10">Add relevant links to improve user experience and internal link structure</p>
+                    <input type="submit" onclick="article_analysis()">
+                </div>
+
+                    <script type="text/javascript">
+
+                        function article_analysis(){
+                            var s = document.getElementById('sani').textContent;
+                            if ("protik"===s){
+                                console.log("yes");
+                            }else {
+                                console.log("No")
+                            }
+                            alert(s)
+                        }
+
+
+                        function coloring(){
+                            document.getElementById("score_1").style.color = "#800000";
+                            document.getElementById("score_2").style.color = "#800000";
+                            document.getElementById("score_3").style.color = "#800000";
+                            document.getElementById("score_4").style.color = "#800000";
+                            document.getElementById("score_5").style.color = "#800000";
+                            document.getElementById("score_6").style.color = "#800000";
+                            document.getElementById("score_7").style.color = "#800000";
+                            document.getElementById("score_8").style.color = "#800000";
+                            document.getElementById("score_9").style.color = "#800000";
+                            document.getElementById("score_10").style.color = "#800000";
+                        }
+                        {#article_analysis();#}
+                    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
